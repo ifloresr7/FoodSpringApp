@@ -29,5 +29,5 @@ tasks.named('test') {
 }
 
  bootJar {
-    mainClassName = 'com.FoodSpringApp.FoodSpringAppApplication'
+    mainClass = 'com.FoodSpringApp.FoodSpringApp.FoodSpringAppApplication'
 }

@@ -1,5 +1,5 @@
 # Usar una imagen base con Java 17 preinstalado
-FROM eclipse-temurin:17-jdk-jammy
+FROM openjdk:17-jdk-slim
 
 # Establecer el directorio de trabajo dentro del contenedor
 WORKDIR /app
