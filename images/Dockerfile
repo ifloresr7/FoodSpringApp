@@ -6,16 +6,16 @@ WORKDIR /app
 
 # Copiar los archivos de Gradle y configuración de la aplicación
 COPY build.gradle settings.gradle /app/
-COPY gradle /app/gradle
+COPY gradle /app/gradle/
 
 # Copiar el código fuente
-COPY src /app/src
+COPY src /app/src/
 
 # Descargar las dependencias y compilar el proyecto
-RUN ./gradlew build --no-daemon
+RUN chmod +x gradlew && ./gradlew build --no-daemon
 
 # Exponer el puerto de la aplicación (8080 es el puerto por defecto en Spring Boot)
 EXPOSE 8080
 
 # Comando para ejecutar la aplicación
-CMD ["./gradlew", "bootRun"]
+CMD ["java", "-jar", "build/libs/FoodSpringApp-0.0.1-SNAPSHOT.jar"]
