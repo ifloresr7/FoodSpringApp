@@ -1,21 +1,14 @@
-# Usar una imagen base con Java 17 preinstalado
-FROM openjdk:17-jdk-slim
+# Usa una imagen base de Java
+FROM openjdk:21-jdk-slim
 
-# Establecer el directorio de trabajo dentro del contenedor
+# Establece el directorio de trabajo en el contenedor
 WORKDIR /app
 
-# Copiar los archivos de Gradle y configuración de la aplicación
-COPY build.gradle settings.gradle /app/
-COPY gradle /app/gradle/
-
-# Copiar el código fuente
-COPY src /app/src/
-
-# Descargar las dependencias y compilar el proyecto
-RUN chmod +x gradlew && ./gradlew build --no-daemon
+# Copia el JAR compilado desde tu máquina local al contenedor
+COPY build/libs/FoodSpringApp-0.0.1-SNAPSHOT.jar /app/
 
 # Exponer el puerto de la aplicación (8080 es el puerto por defecto en Spring Boot)
 EXPOSE 8080
 
 # Comando para ejecutar la aplicación
-CMD ["java", "-jar", "build/libs/FoodSpringApp-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "/app/FoodSpringApp-0.0.1-SNAPSHOT.jar"]
